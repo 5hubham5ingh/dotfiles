@@ -117,10 +117,6 @@ vcat() {
 
 export COLUMNS
 
-# zoxide
-export PATH=$PATH:/home/ss/.local/bin
-eval "$(zoxide init bash)"
-
 # deno
 export DENO_INSTALL="/home/ss/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
@@ -140,6 +136,11 @@ export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 # starship prompt
 eval "$(starship init bash)"
 
+# fzf
+## Set up fzf key bindings and fuzzy completion
+eval "$(fzf --bash)"
+
+## Set common fzf args
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 . "/home/ss/.deno/env"
 
@@ -153,3 +154,11 @@ export PATH=$PATH:/usr/local/go/bin
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 export PATH="$HOME/bin:$PATH"
+
+# zoxide
+export PATH=$PATH:$HOME/.cargo/bin
+eval "$(zoxide init bash)"
+
+# For fd (required for Lazyvim)
+export PATH="$HOME/.local/bin:$PATH"
+source /home/ss/.sigma-neo-completion.bash

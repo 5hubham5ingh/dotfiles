@@ -50,4 +50,50 @@ https://github.com/user-attachments/assets/ccff5ede-4bf3-46ac-9e95-5aedadb9e792
 
 
 
-
+# Tools
+## Setup rust
+Run `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
+## Starship
+Installed using `curl -sS https://starship.rs/install.sh | sh`
+## Kitty
+Installed using `curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin`.
+Then run these for desktop integration:
+```
+# Create symbolic links to add kitty and kitten to PATH (assuming ~/.local/bin is in
+# your system-wide PATH)
+ln -sf ~/.local/kitty.app/bin/kitty ~/.local/kitty.app/bin/kitten ~/.local/bin/
+# Place the kitty.desktop file somewhere it can be found by the OS
+cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications/
+# If you want to open text files and images in kitty via your file manager also add the kitty-open.desktop file
+cp ~/.local/kitty.app/share/applications/kitty-open.desktop ~/.local/share/applications/
+# Update the paths to the kitty and its icon in the kitty desktop file(s)
+sed -i "s|Icon=kitty|Icon=$(readlink -f ~)/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty*.desktop
+sed -i "s|Exec=kitty|Exec=$(readlink -f ~)/.local/kitty.app/bin/kitty|g" ~/.local/share/applications/kitty*.desktop
+# Make xdg-terminal-exec (and hence desktop environments that support it use kitty)
+echo 'kitty.desktop' > ~/.config/xdg-terminals.list
+```
+## Neovim
+Build from source
+## zoxide
+Run `cargo install zoxide --locked`
+## Setup golang
+For Ubuntu:
+`sudo snap install go --classic`
+For Arch:
+``
+## Fzf
+Run the following to install the latest bin from github:
+``` 
+curl -sL `curl -s https://api.github.com/repos/junegunn/fzf/releases/latest | jq -r '.assets[] | select(.name | contains("linux_amd64.tar.gz")) | .browser_download_url'` | tar -xz && sudo mv fzf /usr/local/bin/
+```
+## js
+Run the following commands:
+```
+curl -L $(curl -s https://api.github.com/repos/5hubham5ingh/js-util/releases/latest | grep -Po '"browser_download_url": "\K[^"]+' | grep js) -o js
+chmod +x js
+sudo mv js /usr/local/bin/
+```
+## docker engine
+Follow instructions in the official doc.
+## ripgrep
+Run `$ cargo install ripgrep`
